@@ -1,0 +1,22 @@
+@model webdev.Models.Link
+<div>
+    <table>
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => Model.FullLink):</strong></td>
+            <td>@Html.DisplayFor(model => Model.FullLink),</td>
+            <td><strong>@Html.DisplayNameFor(model => Model.ShortLink):</strong></td>
+            <td>@Html.DisplayFor(model => Model.ShortLink)</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    @using (Html.BeginForm("Update", "Link", FormMethod.Post))
+    {
+        <input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
+        <input type="text" name="FullLink" placeholder="FullLink"/> <br/>
+        @Html.HiddenFor(model => Model.Id)
+        <button type="submit">Add</button>
+    }
+</div>
+     
