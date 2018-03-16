@@ -33,7 +33,7 @@ namespace webdev.Repository
         {
             var linkToDelete = _links
                 .SingleOrDefault(element => element.ShortLink == link.ShortLink && element.FullLink == link.FullLink);
-            _Links.Remove(linkToDelete);
+            _links.Remove(linkToDelete);
         }
 
         public void Update(Link link) 

@@ -23,7 +23,7 @@ namespace webdev
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<IBooksRepository, BooksRepository>();
+            services.AddSingleton<ILinksRepository, LinksRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,7 +39,7 @@ namespace webdev
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Book}/{action=Index}");
+                    template: "{controller=Link}/{action=Index}");
             });
         }
     }
