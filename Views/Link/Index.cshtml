@@ -2,8 +2,8 @@
 <div>
     @using (Html.BeginForm("Create", "Link", FormMethod.Post))
     {
-        <input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
         <input type="text" name="FullLink" placeholder="FullLink"/> <br/>
+        //<input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
         <button type="submit">Add</button>
     }
 </div>  
@@ -15,6 +15,7 @@
                 <td>@Html.DisplayFor(model => item.FullLink),</td>
                 <td><strong>@Html.DisplayNameFor(model => item.ShortLink):</strong></td>
                 <td>@Html.DisplayFor(model => item.ShortLink)</td>
+                <td>| @Html.DisplayFor(model => item.Id)</td>
                 <td>| @Html.ActionLink("Delete", "Delete", "Link", item)</td>
                 <td>| @Html.ActionLink("Edit", "Edit", "Link", item)</td>
             </tr>

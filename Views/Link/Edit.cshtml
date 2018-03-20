@@ -13,8 +13,8 @@
 <div>
     @using (Html.BeginForm("Update", "Link", FormMethod.Post))
     {
-        <input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
         <input type="text" name="FullLink" placeholder="FullLink"/> <br/>
+        //<input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
         @Html.HiddenFor(model => Model.Id)
         <button type="submit">Add</button>
     }
