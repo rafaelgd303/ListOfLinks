@@ -20,6 +20,10 @@ namespace webdev.Controllers
             var links = _repository.GetLinks();
             return View(links);
         }
+        public IActionResult Add()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult Create(Link link)

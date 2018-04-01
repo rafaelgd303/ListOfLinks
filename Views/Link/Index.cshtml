@@ -1,12 +1,9 @@
 @model List<webdev.Models.Link>
-<div>
-    @using (Html.BeginForm("Create", "Link", FormMethod.Post))
-    {
-        <input type="text" name="FullLink" placeholder="FullLink"/> <br/>
-        //<input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
-        <button type="submit">Add</button>
-    }
-</div>  
+
+<button>
+    @Html.ActionLink("Add new link", "Add", "Link")
+</button>
+
 <div>
     <table>
         @foreach(var item in Model) {
