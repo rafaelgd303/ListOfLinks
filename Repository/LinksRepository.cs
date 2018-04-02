@@ -17,17 +17,20 @@ namespace webdev.Repository
 
         public void AddLink(Link link) 
         {
-            // Hashids someHash = new Hashids(full);
-            // var id = full.Encode(1,2,3);
-            // link.ShortLink = id;
             var hashids = new Hashids(link.FullLink);
             var id = hashids.Encode(1, 2, 3);
             var numbers = hashids.Decode(id);
-
             link.ShortLink = id;
             link.Id = _links.Count;
             _links.Add(link);
         }
+
+        public string DecodeLink(string link)
+        {
+            var decoder = new Hashids(link);
+            var numbers = decoder.Decode(link).FirstOrDefault();
+            return _links.FirstOrDefault(l => l.Id == numbers).FullLink;
+        }        
 
         public List<Link> GetLinks() 
         {
@@ -50,7 +53,6 @@ namespace webdev.Repository
                 var id = hashids.Encode(1, 2, 3);
                 var numbers = hashids.Decode(id);
                 link.ShortLink = id;
-
                 _links[linkToUpdateIndex] = link;
 
             }

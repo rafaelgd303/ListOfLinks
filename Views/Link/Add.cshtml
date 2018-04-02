@@ -4,13 +4,10 @@
 
     @using (Html.BeginForm("Create", "Link", FormMethod.Post))
     {
-        <p>Validation summary</p>
         @Html.ValidationSummary();
         <br/>
         @Html.LabelFor(link => link.FullLink)
         @Html.EditorFor(link => link.FullLink)
-        // <input type="text" name="FullLink" placeholder="FullLink"/> <br/>
-        // <input type="text" name="ShortLink" placeholder="ShortLink"/> <br/>
         @Html.ValidationMessageFor(link => link.FullLink)
         <button type="submit">Add</button>
     }

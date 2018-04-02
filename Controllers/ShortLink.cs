@@ -14,15 +14,12 @@ namespace ListOfLinks.Controllers
         {
             _repository = repository;
         }
-        [HttpGet("short/{link}")]
-        public IActionResult Index(string link)
+
+        [HttpGet("/{link}")]
+        public IActionResult RedirectUrl(string link)
         {
-            //var cos = _repository.GetLinks();
-            Debug.Write(link);
-            //var ttt = cos.First().FullLink;
-            // var links = _repository.GetLinks();
-            // return View(links);
-            return Redirect(link);
+            var fullLink = _repository.DecodeLink(link);
+            return Redirect(fullLink);
         }
     }
 }

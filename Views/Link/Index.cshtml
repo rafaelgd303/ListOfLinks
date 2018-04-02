@@ -11,7 +11,7 @@
                 <td><strong>@Html.DisplayNameFor(model => item.FullLink):</strong></td>
                 <td>@Html.DisplayFor(model => item.FullLink),</td>
                 <td><strong>@Html.DisplayNameFor(model => item.ShortLink):</strong></td>
-                <td>@Html.DisplayFor(model => item.ShortLink)</td>
+                <td>@Html.ActionLink(item.ShortLink, "RedirectUrl", "ShortLink", new {link = item.ShortLink}, new {target="_blank"})</td>
                 <td>| @Html.DisplayFor(model => item.Id)</td>
                 <td>| @Html.ActionLink("Delete", "Delete", "Link", item)</td>
                 <td>| @Html.ActionLink("Edit", "Edit", "Link", item)</td>

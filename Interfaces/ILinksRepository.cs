@@ -9,5 +9,6 @@ namespace webdev.Interfaces
          void AddLink(Link link);
          void Delete(Link link);
          void Update(Link link);
+         string DecodeLink(string link);
     }
 }
