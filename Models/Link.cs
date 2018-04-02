@@ -3,6 +3,7 @@ namespace webdev.Models
 {
     public class Link
     {
+        [Key]
         public int Id { get;set; }
         [Url]
         [Required(ErrorMessage="Please provide URL address")]
