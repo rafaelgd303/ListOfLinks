@@ -3,16 +3,19 @@ using System.Linq;
 using webdev.Interfaces;
 using webdev.Models;
 using HashidsNet;
+using ListOfLinks;
+using Microsoft.EntityFrameworkCore;
 
 namespace webdev.Repository
 {
     public class LinkRepository : ILinkRepository
     {
         private List<Link> _Link;
+        private readonly LinkDbContext _context;
 
-        public LinkRepository()
+        public LinkRepository(LinkDbContext context)
         {
-            _Link = new List<Link>();
+            _context = context;
         }
 
         public void AddLink(Link link) 
@@ -21,8 +24,9 @@ namespace webdev.Repository
             var id = hashids.Encode(1, 2, 3);
             var numbers = hashids.Decode(id);
             link.ShortLink = id;
-            link.Id = _Link.Count;
-            _Link.Add(link);
+            link.Id = _context.Links.Count();
+            _context.Add(link);
+            _context.SaveChanges();
         }
 
         public string DecodeLink(string link)
@@ -34,28 +38,21 @@ namespace webdev.Repository
 
         public List<Link> GetLink() 
         {
-            return _Link;
+            return _context.Links.ToList();
         }
 
         public void Delete(Link link) 
         {
-            var linkToDelete = _Link
-                .SingleOrDefault(element => element.ShortLink == link.ShortLink && element.FullLink == link.FullLink);
-            _Link.Remove(linkToDelete);
+            Link linkToDelete = _context.Links.Find(link.Id);
+            _context.Links.Remove(linkToDelete);
+            _context.SaveChanges();
         }
 
         public void Update(Link link) 
         {
-            var linkToUpdateIndex = _Link.FindIndex(element => element.Id == link.Id);
-            if(linkToUpdateIndex != -1) 
-            {
-                var hashids = new Hashids(link.FullLink);
-                var id = hashids.Encode(1, 2, 3);
-                var numbers = hashids.Decode(id);
-                link.ShortLink = id;
-                _Link[linkToUpdateIndex] = link;
-
-            }
+            _context.Links.Attach(link);
+            _context.Entry(link).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

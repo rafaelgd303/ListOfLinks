@@ -7,17 +7,17 @@ namespace webdev.Controllers
 {
     public class LinkController : Controller
     {
-        private ILinkRepository _repository;
-        
-        public LinkController(ILinkRepository LinkRepository)
+        private readonly ILinkRepository repository;
+        private int itemsPerPage = 10;
+        public LinkController(ILinkRepository repository)
         {
-            _repository = LinkRepository;
+            this.repository = repository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var Link = _repository.GetLink();
+            var Link = repository.GetLink();
             return View(Link);
         }
         public IActionResult Add()
@@ -28,14 +28,14 @@ namespace webdev.Controllers
         [HttpPost]
         public IActionResult Create(Link link)
         {
-            _repository.AddLink(link);
+            repository.AddLink(link);
             return Redirect("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(Link link)
         {
-            _repository.Delete(link);
+            repository.Delete(link);
             return Redirect("Index");
         }
 
@@ -48,7 +48,7 @@ namespace webdev.Controllers
         [HttpPost]
         public IActionResult Update(Link link) 
         {
-            _repository.Update(link);
+            repository.Update(link);
             return Redirect("Index");
         }
     }

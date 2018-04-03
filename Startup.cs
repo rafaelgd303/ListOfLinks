@@ -29,6 +29,7 @@ namespace webdev
             services.AddSingleton<ILinkRepository, LinkRepository>();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info{ Title = "List of hashed links API", Version = "v1" }));
             services.AddDbContext<LinkDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("LinkDbContext")));
+            services.AddTransient<ILinkRepository, LinkRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
