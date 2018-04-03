@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ListOfLinks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -24,8 +26,9 @@ namespace webdev
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSingleton<ILinksRepository, LinksRepository>();
+            services.AddSingleton<ILinkRepository, LinkRepository>();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Info{ Title = "List of hashed links API", Version = "v1" }));
+            services.AddDbContext<LinkDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("LinkDbContext")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

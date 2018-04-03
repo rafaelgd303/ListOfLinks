@@ -9,8 +9,8 @@ namespace ListOfLinks.Controllers
 {
     public class ShortLinkController : Controller
     {
-        private ILinksRepository _repository;
-        public ShortLinkController(ILinksRepository repository)
+        private ILinkRepository _repository;
+        public ShortLinkController(ILinkRepository repository)
         {
             _repository = repository;
         }

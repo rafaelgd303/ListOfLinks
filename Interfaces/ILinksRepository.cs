@@ -3,9 +3,9 @@ using webdev.Models;
 
 namespace webdev.Interfaces
 {
-    public interface ILinksRepository
+    public interface ILinkRepository
     {
-         List<Link> GetLinks();
+         List<Link> GetLink();
          void AddLink(Link link);
          void Delete(Link link);
          void Update(Link link);

@@ -7,18 +7,18 @@ namespace webdev.Controllers
 {
     public class LinkController : Controller
     {
-        private ILinksRepository _repository;
+        private ILinkRepository _repository;
         
-        public LinkController(ILinksRepository LinksRepository)
+        public LinkController(ILinkRepository LinkRepository)
         {
-            _repository = LinksRepository;
+            _repository = LinkRepository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var links = _repository.GetLinks();
-            return View(links);
+            var Link = _repository.GetLink();
+            return View(Link);
         }
         public IActionResult Add()
         {
