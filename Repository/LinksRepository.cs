@@ -32,7 +32,7 @@ namespace webdev.Repository
         public string DecodeLink(string link)
         {
             var decoder = new Hashids(link);
-            var decodedLink = _Link.Where(l => l.ShortLink == link).FirstOrDefault();
+            var decodedLink = _context.Links.Find(link); 
             return decodedLink.FullLink;
         }        
 
